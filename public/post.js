@@ -1,13 +1,15 @@
 class Form extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
+        this.state = {value: '',
+                      fetch: null,};
     }
 
     handleChange = this.handleChange.bind(this);
 
     handleChange(event) {
-        event.persist()
+        // this.fetch.abort();
+        event.persist();
         this.setState({value: event.target.value});
 
         class Cities extends React.Component {
@@ -15,7 +17,7 @@ class Form extends React.Component {
                 error: null,
                 isLoaded: false,
                 cities: [],
-                message: ''
+                messages: '',
             };
 
             componentDidMount() {
@@ -39,26 +41,32 @@ class Form extends React.Component {
                             );
                         }
                     )
+                this.setState({fetch});
             }
 
             handleClick = this.handleClick.bind(this);
 
             handleClick(event) {
-                var city = event.currentTarget.value;
+                // var value = event.currentTarget.value;
+                var city = this.state.cities.find(ville => ville.villeId == event.currentTarget.value);
+                // var city = this.state.cities.filter( (ville) => ville > event.currentTarget.value);
+                console.log(city);
+
                 // this.state.cities.map(cityComplet =>
                 //     if(cityComplet.villeId == city) return cityComplet
                 // );
-                if (city == 28334){
+                if (city.villeId == 28334){
                     this.setState({
-                        message: "MEILLEUR VILLE DE FRANCE !"
+                        messages: ["Carrefour","planeteMode","KingJouet","MEILLEUR VILLE DE FRANCE !"," Kebab"," Coiffeur"]
                     })
-                }else if (city == 28142){
+                }else if (city.villeId == 28142){
                     this.setState({
-                        message: "AUCHAN."
+                        messages: ["AUCHAN","Voisin de Pierre-Bénite"]
                     })
                 }
-                map.setCenter(new google.maps.LatLng(64.85599578876611, -147.83363628361917));
-                map.setZoom(15);
+
+                map.setCenter(new google.maps.LatLng(city.villeLatitudeDeg, city.villeLongitudeDeg));
+                map.setZoom(13);
             }
 
             render() {
@@ -75,8 +83,13 @@ class Form extends React.Component {
                                     <button value={city.villeId} onClick={this.handleClick} className={"city"}>
                                         {city.villeNom}
                                     </button>
-                                    { this.state.message ?
-                                        <button className={"giv"}>{this.state.message}</button>
+                                    { this.state.messages ?
+                                        <button className={"giv"}>{this.state.messages.map(message => (
+                                        <ul>
+                                            <li>{message}</li>
+                                        </ul>
+                                        ))}
+                                        </button>
                                         : null }
                                 </div>
                             ))}
