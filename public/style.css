@@ -1,0 +1,46 @@
+#map {
+    height: 100%;
+}
+
+#form {
+    height: 40px;
+    width: 180px;
+    right: 25px;
+    position: absolute;
+    z-index: 100;
+}
+
+#cities{
+    height: 40px;
+    width: 180px;
+    right: 25px;
+    position: absolute;
+    top: 40px;
+    z-index: 100;
+}
+
+button{
+    width: 100%;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+ul{
+    padding: 0px;
+    margin: 0px;
+    background-color: white;
+}
+
+.giv{
+    color: #a20404;
+    font-weight: bold;
+}

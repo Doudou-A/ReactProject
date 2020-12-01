@@ -3,20 +3,31 @@
 {% block title %}Hello GoogleMapsController!{% endblock %}
 
 {% block body %}
-	<div id="form" style="height: 40px; width: 180px; position: absolute; z-index: 100;"></div>
-	{# <div id="map"></div> #}
+	<div id="form"></div>
+	<div id="cities"></div>
+	<div id="map"></div>
 {% endblock %}
 
 {% block javascripts %}
-	{# <script> #}
-	{# let map; #}
+	<script>
+        let map;
+        var lat = -34.397;
+        var lng =  150.644;
 
-	{# function initMap() { #}
-	{# map = new google.maps.Map(document.getElementById("map"), { #}
-	{# center: {lat: -34.397, lng: 150.644}, #}
-	{# zoom: 8, #}
-	{# }); #}
-	{# } #}
-	{# </script> #}
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: {lat: lat, lng: lng},
+                zoom: 8,
+            });
+            var marker = new google.maps.Marker({
+                // Nous définissons sa position (syntaxe json)
+                position: {lat: lat, lng: lng},
+                // Nous définissons à quelle carte il est ajouté
+                map: map
+            });
+        }
+	</script>
 	<script type="text/babel" src="{{ asset('post.js') }}"></script>
+	{# <script type="text/babel" src="{{ asset('Cities.js') }}"></script> #}
+
 {% endblock %}

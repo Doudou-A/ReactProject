@@ -9,18 +9,7 @@
         ></script>
         <!-- Charge notre composant React -->
         <script src="init_map.js"></script>
-        <style type="text/css">
-            #map {
-                height: 100%;
-            }
-
-            html,
-            body {
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
-        </style>
+        <link rel="stylesheet" href="{{ asset ('style.css') }}">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
     </head>
